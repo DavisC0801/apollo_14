@@ -3,18 +3,18 @@ require "rails_helper"
 RSpec.describe "As a visitor" do
   describe "when I visit '/astronauts'" do
     before :each do
-      @niel = Astronaut.create!(name: "Neil Armstrong", age: 37, job: "Commander")
+      @neil = Astronaut.create!(name: "Neil Armstrong", age: 37, job: "Commander")
       @buzz = Astronaut.create!(name: "Buzz Aldren", age: 31, job: "Navigator")
       @gemini_7 = @buzz.missions.create!(title: "Gemini 7", time_in_space: 150)
-      @capricorn_4 = @niel.missions.create!(title: "Capricorn 4", time_in_space: 100)
-      @apollo_11 = @niel.missions.create!(title: "Apollo 11", time_in_space: 300)
+      @capricorn_4 = @neil.missions.create!(title: "Capricorn 4", time_in_space: 100)
+      @apollo_11 = @neil.missions.create!(title: "Apollo 11", time_in_space: 300)
       @apollo_12 = @buzz.missions.create!(title: "Apollo 12", time_in_space: 200)
     end
 
     it "shows a list of astronauts with info" do
       visit "/astronauts"
 
-      within("#astronaut-#{@niel.id}-info") do
+      within("#astronaut-#{@neil.id}-info") do
         expect(page).to have_content("Name: #{@neil.name}")
         expect(page).to have_content("Age: #{@neil.age}")
         expect(page).to have_content("Job: #{@neil.job}")
@@ -33,14 +33,14 @@ RSpec.describe "As a visitor" do
       visit "/astronauts"
 
       within("#statistics") do
-        expect(page).to eq("Average Age: 34")
+        expect(page).to have_content("Average Age: 34")
       end
     end
 
     it "shows a list of space missions in alphabetical order" do
       visit "/astronauts"
 
-      within("#astronaut-#{@niel.id}-info") do
+      within("#astronaut-#{@neil.id}-info") do
         expect(page.all('li')[0]).to have_content("#{@apollo_11.title}")
         expect(page.all('li')[1]).to have_content("#{@capricorn_4.title}")
       end

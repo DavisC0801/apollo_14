@@ -1,4 +1,7 @@
 <h1>Astronauts Page</h1>
+<div id="statistics">
+  <p>Average Age: <%= @astronauts.first.average_age %></p>
+</div>
 <% @astronauts.each do |astronaut| %>
   <div id="astronaut-<%= astronaut.id %>-info">
     <h4>Info</h4>
