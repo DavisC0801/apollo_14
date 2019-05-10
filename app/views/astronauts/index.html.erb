@@ -1,0 +1,17 @@
+<h1>Astronauts Page</h1>
+<% @astronauts.each do |astronaut| %>
+  <div id="astronaut-<%= astronaut.id %>-info">
+    <h4>Info</h4>
+    <p>Name: <%= astronaut.name %></p>
+    <p>Age: <%= astronaut.age %></p>
+    <p>Job: <%= astronaut.job %></p>
+    <p>Total Time in Space: <%= astronaut.total_space_time %> days</p>
+    <br>
+    <h4>Missions</h4>
+    <ul>
+    <% astronaut.missions.each do |mission| %>
+      <li><%= mission.title %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
